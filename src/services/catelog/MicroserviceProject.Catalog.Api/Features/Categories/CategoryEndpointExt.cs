@@ -1,5 +1,5 @@
 ﻿using MicroserviceProject.Catalog.Api.Features.Categories.Create;
-using MicroserviceProject.Shared.Filters;
+using MicroserviceProject.Catalog.Api.Features.Categories.GetAll;
 
 namespace MicroserviceProject.Catalog.Api.Features.Categories
 {
@@ -7,7 +7,7 @@ namespace MicroserviceProject.Catalog.Api.Features.Categories
     {
         public static void AddCategoryGroupEndpointExt(this WebApplication app)
         {
-            app.MapGroup("api/categories").CreateCategoryGroupItemEndpoint();
+            app.MapGroup("api/categories").CreateCategoryGroupItemEndpoint().GetAllCategoryGroupItemEndpoint();
         }
     }
 }
