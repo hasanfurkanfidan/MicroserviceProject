@@ -7,7 +7,7 @@ using MicroserviceProject.Shared.Extensions;
 
 namespace MicroserviceProject.Catalog.Api.Features.Categories.GetById
 {
-    public record GetCategoryByIdQuery(Guid Id) : IRequest<ServiceResult<CategoryDto>>;
+    public record GetCategoryByIdQuery(Guid Id) : IRequestByServiceResult<CategoryDto>;
     public class GetCategoryByIdQueryHandler(AppDbContext context,IMapper mapper) : IRequestHandler<GetCategoryByIdQuery, ServiceResult<CategoryDto>>
     {
         public async Task<ServiceResult<CategoryDto>> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
