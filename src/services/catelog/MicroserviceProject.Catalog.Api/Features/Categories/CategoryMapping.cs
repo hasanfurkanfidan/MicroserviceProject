@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MicroserviceProject.Catalog.Api.Features.Categories.Dtos;
+﻿using MicroserviceProject.Catalog.Api.Features.Categories.Dtos;
 
 namespace MicroserviceProject.Catalog.Api.Features.Categories
 {

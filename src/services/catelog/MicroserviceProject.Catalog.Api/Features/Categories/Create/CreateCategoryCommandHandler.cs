@@ -1,8 +1,4 @@
-﻿using MassTransit;
-using MediatR;
-using MicroserviceProject.Catalog.Api.Repositories;
-using MicroserviceProject.Shared;
-using Microsoft.EntityFrameworkCore;
+﻿using MicroserviceProject.Catalog.Api.Repositories;
 using System.Net;
 
 namespace MicroserviceProject.Catalog.Api.Features.Categories.Create

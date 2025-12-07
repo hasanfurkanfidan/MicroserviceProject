@@ -1,8 +1,4 @@
-﻿using MediatR;
-using MicroserviceProject.Shared.Extensions;
-using MicroserviceProject.Shared.Filters;
-
-namespace MicroserviceProject.Catalog.Api.Features.Categories.Create
+﻿namespace MicroserviceProject.Catalog.Api.Features.Categories.Create
 {
     public static class CreateCategoryEndpoint
     {
