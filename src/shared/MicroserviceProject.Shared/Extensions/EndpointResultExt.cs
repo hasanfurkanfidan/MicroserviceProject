@@ -10,7 +10,7 @@ namespace MicroserviceProject.Shared.Extensions
             return result.Status switch
             {
                 HttpStatusCode.OK => Results.Ok(result),
-                HttpStatusCode.Created => Results.Created(result.UrlAsCreated!, result.Data!),
+                HttpStatusCode.Created => Results.Created(result.UrlAsCreated!, result),
                 HttpStatusCode.NoContent => Results.NoContent(),
                 HttpStatusCode.NotFound => Results.NotFound(result.Fail!),
                 _ => Results.Problem(result.Fail!)
