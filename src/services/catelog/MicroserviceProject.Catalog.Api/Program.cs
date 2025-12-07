@@ -1,4 +1,6 @@
 using MicroserviceProject.Catalog.Api.Options;
+using MicroserviceProject.Catalog.Api.Repositories;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddOptionsExt();
+builder.Services.AddDatabaseServiceExt();
+
 
 var app = builder.Build();
 

@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Microsoft.Extensions.Options;
 
 namespace MicroserviceProject.Catalog.Api.Options
 {
@@ -8,6 +8,7 @@ namespace MicroserviceProject.Catalog.Api.Options
         {
             services.AddOptions<MongoOptions>().BindConfiguration(nameof(MongoOptions)).ValidateDataAnnotations().ValidateOnStart();
 
+            services.AddSingleton(sp => sp.GetRequiredService<IOptions<MongoOptions>>().Value);
             return services;
         }
     }
