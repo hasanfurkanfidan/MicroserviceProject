@@ -1,6 +1,8 @@
+using MicroserviceProject.Catalog.Api;
+using MicroserviceProject.Catalog.Api.Features.Categories;
 using MicroserviceProject.Catalog.Api.Options;
 using MicroserviceProject.Catalog.Api.Repositories;
-using MongoDB.Driver;
+using MicroserviceProject.Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddOptionsExt();
 builder.Services.AddDatabaseServiceExt();
-
-
+builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,6 +21,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.Run();
+
+app.AddCategoryGroupEndpointExt();
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
