@@ -6,7 +6,7 @@ namespace MicroserviceProject.Catalog.Api.Features.Courses.Update
     {
         public static RouteGroupBuilder UpdateCourseGroupItemEndpoint(this RouteGroupBuilder group)
         {
-            group.MapPost("/", async (UpdateCourseCommand Command, IMediator mediator) =>
+            group.MapPut("/", async (UpdateCourseCommand Command, IMediator mediator) =>
             {
                 var result = await mediator.Send(Command);
                 return result.ToGenericResult();

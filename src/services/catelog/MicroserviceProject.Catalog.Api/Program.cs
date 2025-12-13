@@ -21,7 +21,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+await app.AddSeedDataExt();
 app.AddCategoryGroupEndpointExt();
 app.AddCourseGroupEndpointExt();
 
