@@ -26,6 +26,8 @@ namespace MicroserviceProject.Catalog.Api.Features.Courses.Create
                 EducatorFullName = "Hasan Furkan Fidan",
                 Rating = 0
             };
+
+            newCourse.Feature = feature;
             await context.Courses.AddAsync(newCourse, cancellationToken);
             await context.SaveChangesAsync(cancellationToken);
 
