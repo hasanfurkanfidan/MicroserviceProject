@@ -15,7 +15,7 @@ namespace MicroserviceProject.Catalog.Api.Repositories
             builder.Property(p => p.Id).ValueGeneratedNever();
             builder.Property(p => p.Name).HasElementName("name").HasMaxLength(100);
             builder.Property(p => p.Description).HasElementName("description").HasMaxLength(1000);
-            builder.Property(p => p.Picture).HasElementName("picture").HasMaxLength(1000);
+            builder.Property(p => p.ImageUrl).HasElementName("imageUrl").HasMaxLength(200);
             builder.Property(p => p.Created).HasElementName("created");
             builder.Property(p => p.Price).HasElementName("price");
             builder.Property(p => p.UserId).HasElementName("userId");

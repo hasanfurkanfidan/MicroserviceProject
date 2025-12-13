@@ -26,7 +26,7 @@ namespace MicroserviceProject.Catalog.Api.Features.Categories.GetAll
             {
                 var result = await mediator.Send(new GetAllCategoryQuery());
                 return result.ToGenericResult();
-            });
+            }).WithName("GetAllCategory");
 
             return group;
         }

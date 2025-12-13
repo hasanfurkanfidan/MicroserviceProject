@@ -28,7 +28,7 @@ namespace MicroserviceProject.Catalog.Api.Features.Categories.GetById
                 var result = await mediator.Send(new GetCategoryByIdQuery(id));
 
                 return result.ToGenericResult();
-            });
+            }).WithName("GetByIdCategory");
 
             return group;
         }

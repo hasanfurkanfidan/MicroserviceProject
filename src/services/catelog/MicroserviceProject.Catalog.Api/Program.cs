@@ -1,8 +1,8 @@
 using MicroserviceProject.Catalog.Api;
 using MicroserviceProject.Catalog.Api.Features.Categories;
+using MicroserviceProject.Catalog.Api.Features.Courses;
 using MicroserviceProject.Catalog.Api.Options;
 using MicroserviceProject.Catalog.Api.Repositories;
-using MicroserviceProject.Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +23,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.AddCategoryGroupEndpointExt();
-
+app.AddCourseGroupEndpointExt();
 
 app.Run();
