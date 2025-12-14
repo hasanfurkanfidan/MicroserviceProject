@@ -2,16 +2,17 @@
 using MicroserviceProject.Basket.Api.Const;
 using MicroserviceProject.Basket.Api.Dtos;
 using MicroserviceProject.Shared;
+using MicroserviceProject.Shared.Services;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 
 namespace MicroserviceProject.Basket.Api.Features.Baskets.AddBasketItem
 {
-    public class AddBasketItemCommandHandler(IDistributedCache distributedCache) : IRequestHandler<AddBasketItemCommand, ServiceResult>
+    public class AddBasketItemCommandHandler(IDistributedCache distributedCache,IIdentityService identityService) : IRequestHandler<AddBasketItemCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(AddBasketItemCommand request, CancellationToken cancellationToken)
         {
-            Guid userId = Guid.NewGuid();
+            Guid userId = identityService.GetUserId;
             var cacheKey = String.Format(BasketConsts.BasketCacheKey, userId);
 
             var basketAsString = await distributedCache.GetStringAsync(cacheKey, cancellationToken);
