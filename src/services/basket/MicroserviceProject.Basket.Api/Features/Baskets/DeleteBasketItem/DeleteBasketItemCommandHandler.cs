@@ -8,14 +8,11 @@ using System.Text.Json;
 
 namespace MicroserviceProject.Basket.Api.Features.Baskets.DeleteBasketItem
 {
-    public class DeleteBasketItemCommandHandler(IDistributedCache distributedCache, IIdentityService identityService) : IRequestHandler<DeleteBasketItemCommand, ServiceResult>
+    public class DeleteBasketItemCommandHandler(IDistributedCache distributedCache, IIdentityService identityService,BasketService basketService) : IRequestHandler<DeleteBasketItemCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(DeleteBasketItemCommand request, CancellationToken cancellationToken)
         {
-            Guid userId = identityService.GetUserId;
-            var cacheKey = String.Format(BasketConsts.BasketCacheKey, userId);
-
-            var basketAsString = await distributedCache.GetStringAsync(cacheKey, cancellationToken);
+            var basketAsString = await basketService.GetBasketFromCache();
 
             if (string.IsNullOrEmpty(basketAsString))
             {
@@ -33,15 +30,9 @@ namespace MicroserviceProject.Basket.Api.Features.Baskets.DeleteBasketItem
 
             currentBasket.Items.Remove(basketItemToDelete);
 
-            await CreateCacheAsync(currentBasket, cacheKey, cancellationToken);
+            await basketService.CreateCacheAsync(currentBasket, cancellationToken);
 
             return ServiceResult.SuccessAsNoContent();
-        }
-
-        private async Task CreateCacheAsync(Data.Basket basket, string cacheKey, CancellationToken cancellationToken)
-        {
-            var basketAsString = JsonSerializer.Serialize(basket);
-            await distributedCache.SetStringAsync(cacheKey, basketAsString, cancellationToken);
         }
     }
 }
