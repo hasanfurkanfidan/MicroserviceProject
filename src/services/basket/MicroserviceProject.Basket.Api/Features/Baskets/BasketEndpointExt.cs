@@ -1,5 +1,6 @@
 ﻿using MicroserviceProject.Basket.Api.Features.Baskets.AddBasketItem;
 using MicroserviceProject.Basket.Api.Features.Baskets.DeleteBasketItem;
+using MicroserviceProject.Basket.Api.Features.Baskets.GetBasket;
 
 namespace MicroserviceProject.Basket.Api.Features.Baskets
 {
@@ -11,7 +12,8 @@ namespace MicroserviceProject.Basket.Api.Features.Baskets
                 .WithTags("Baskets")
                 .WithApiVersionSet(apiVersionSet)
                 .AddBasketItemGroupItemEndpoint()
-                .DeleteBasketItemGroupItemEndpoint();
+                .DeleteBasketItemGroupItemEndpoint()
+                .GetBasketGroupItemEndpoint();
         }
     }
 }
