@@ -24,14 +24,14 @@ namespace MicroserviceProject.Basket.Api.Features.Baskets.DeleteBasketItem
 
             var currentBasket = JsonSerializer.Deserialize<BasketDto>(basketAsString);
 
-            var basketItemToDelete = currentBasket!.BasketItems.FirstOrDefault(x => x.Id == request.Id);
+            var basketItemToDelete = currentBasket!.Items.FirstOrDefault(x => x.Id == request.Id);
 
             if (basketItemToDelete == null)
             {
                 return ServiceResult.Error("Basket item not found", System.Net.HttpStatusCode.NotFound);
             }
 
-            currentBasket.BasketItems.Remove(basketItemToDelete);
+            currentBasket.Items.Remove(basketItemToDelete);
 
             await CreateCacheAsync(currentBasket, cacheKey, cancellationToken);
 
