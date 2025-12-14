@@ -27,7 +27,10 @@ namespace MicroserviceProject.Basket.Api.Features.Baskets.GetBasket
 
             var basketDto = mapper.Map<BasketDto>(basket);
 
+
             return ServiceResult<BasketDto>.SuccessAsOk(basketDto);
         }
+
+      
     }
 }

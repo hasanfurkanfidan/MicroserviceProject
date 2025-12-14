@@ -33,9 +33,10 @@
         {
             Coupon = coupon;
             DiscountRate = discountRate;
-            foreach (var item in Items)
+
+            foreach (var basket in Items)
             {
-                item.PriceByApplyDiscountRate = item.Price - (decimal)(1 - discountRate);
+                basket.PriceByApplyDiscountRate = basket.Price * (decimal)(1 - discountRate);
             }
         }
 
