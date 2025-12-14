@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using MicroserviceProject.Basket.Api.Const;
 using MicroserviceProject.Basket.Api.Dtos;
 using MicroserviceProject.Shared;
@@ -9,7 +10,7 @@ using System.Text.Json;
 
 namespace MicroserviceProject.Basket.Api.Features.Baskets.GetBasket
 {
-    public class GetBasketQueryHandler(IDistributedCache distributedCache, IIdentityService identityService) : IRequestHandler<GetBasketQuery, ServiceResult<BasketDto>>
+    public class GetBasketQueryHandler(IDistributedCache distributedCache, IIdentityService identityService,IMapper mapper) : IRequestHandler<GetBasketQuery, ServiceResult<BasketDto>>
     {
         public async Task<ServiceResult<BasketDto>> Handle(GetBasketQuery request, CancellationToken cancellationToken)
         {
@@ -22,9 +23,11 @@ namespace MicroserviceProject.Basket.Api.Features.Baskets.GetBasket
                 return ServiceResult<BasketDto>.Error("Basket Not Found", HttpStatusCode.NotFound);
             }
 
-            var basket = JsonSerializer.Deserialize<BasketDto>(basketAsString);
+            var basket = JsonSerializer.Deserialize<Data.Basket>(basketAsString);
 
-            return ServiceResult<BasketDto>.SuccessAsOk(basket!);
+            var basketDto = mapper.Map<BasketDto>(basket);
+
+            return ServiceResult<BasketDto>.SuccessAsOk(basketDto);
         }
     }
 }

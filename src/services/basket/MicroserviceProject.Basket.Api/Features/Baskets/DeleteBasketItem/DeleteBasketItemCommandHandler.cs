@@ -22,7 +22,7 @@ namespace MicroserviceProject.Basket.Api.Features.Baskets.DeleteBasketItem
                 return ServiceResult.Error("Basket not found", System.Net.HttpStatusCode.NotFound);
             }
 
-            var currentBasket = JsonSerializer.Deserialize<BasketDto>(basketAsString);
+            var currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsString);
 
             var basketItemToDelete = currentBasket!.Items.FirstOrDefault(x => x.Id == request.Id);
 
@@ -38,9 +38,9 @@ namespace MicroserviceProject.Basket.Api.Features.Baskets.DeleteBasketItem
             return ServiceResult.SuccessAsNoContent();
         }
 
-        private async Task CreateCacheAsync(BasketDto basketDto, string cacheKey, CancellationToken cancellationToken)
+        private async Task CreateCacheAsync(Data.Basket basket, string cacheKey, CancellationToken cancellationToken)
         {
-            var basketAsString = JsonSerializer.Serialize(basketDto);
+            var basketAsString = JsonSerializer.Serialize(basket);
             await distributedCache.SetStringAsync(cacheKey, basketAsString, cancellationToken);
         }
     }
