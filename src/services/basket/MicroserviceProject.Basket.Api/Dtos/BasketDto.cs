@@ -18,6 +18,6 @@ namespace MicroserviceProject.Basket.Api.Dtos
         [JsonIgnore]
         public Guid UserId { get; init; }
 
-        public List<BasketItemDto> Items { get; set; }
+        public List<BasketItemDto> Items { get; set; } = new();
     }
 }
