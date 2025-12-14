@@ -35,7 +35,7 @@ namespace MicroserviceProject.Catalog.Api.Features.Courses.GetAll
             {
                 var result = await mediator.Send(new GetAllCourseQuery());
                 return result.ToGenericResult();
-            }).WithName("GetAllCourse");
+            }).MapToApiVersion(1, 0).WithName("GetAllCourse");
 
             return group;
         }

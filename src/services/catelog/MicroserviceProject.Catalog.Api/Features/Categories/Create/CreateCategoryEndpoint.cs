@@ -8,7 +8,7 @@
             {
                 var result = await mediator.Send(Command);
                 return result.ToGenericResult();
-            }).WithName("CreateCategory").AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
+            }).WithName("CreateCategory").MapToApiVersion(1, 0).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
 
             return group;
         }

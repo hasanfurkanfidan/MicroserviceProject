@@ -10,7 +10,7 @@ namespace MicroserviceProject.Catalog.Api.Features.Courses.Create
             {
                 var result = await mediator.Send(Command);
                 return result.ToGenericResult();
-            }).WithName("CreateCourse").Produces<Guid>(StatusCodes.Status201Created).Produces(StatusCodes.Status404NotFound).Produces<ProblemDetails>(StatusCodes.Status400BadRequest).AddEndpointFilter<ValidationFilter<CreateCourseCommand>>();
+            }).WithName("CreateCourse").Produces<Guid>(StatusCodes.Status201Created).Produces(StatusCodes.Status404NotFound).Produces<ProblemDetails>(StatusCodes.Status400BadRequest).MapToApiVersion(1, 0).AddEndpointFilter<ValidationFilter<CreateCourseCommand>>();
 
             return group;
         }

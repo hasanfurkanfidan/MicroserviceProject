@@ -32,7 +32,7 @@ namespace MicroserviceProject.Catalog.Api.Features.Courses.GetById
                 var result = await mediator.Send(new GetCourseByIdQuery(id));
 
                 return result.ToGenericResult();
-            }).WithName("GetByIdCourse");
+            }).MapToApiVersion(1, 0).WithName("GetByIdCourse");
 
             return group;
         }

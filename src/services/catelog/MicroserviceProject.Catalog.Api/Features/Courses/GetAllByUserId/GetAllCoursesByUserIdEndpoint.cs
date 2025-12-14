@@ -27,7 +27,7 @@ namespace MicroserviceProject.Catalog.Api.Features.Courses.GetAllByUserId
                 var result = await mediator.Send(new GetAllCoursesByUserIdQuery(userId));
 
                 return result.ToGenericResult();
-            }).WithName("GetAllCoursesByUserId");
+            }).MapToApiVersion(1, 0).WithName("GetAllCoursesByUserId");
 
             return group;
         }

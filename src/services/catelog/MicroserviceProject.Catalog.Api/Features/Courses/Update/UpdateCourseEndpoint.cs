@@ -10,7 +10,7 @@ namespace MicroserviceProject.Catalog.Api.Features.Courses.Update
             {
                 var result = await mediator.Send(Command);
                 return result.ToGenericResult();
-            }).WithName("UpdateCourse").AddEndpointFilter<ValidationFilter<UpdateCourseCommand>>();
+            }).MapToApiVersion(1, 0).WithName("UpdateCourse").AddEndpointFilter<ValidationFilter<UpdateCourseCommand>>();
 
             return group;
         }

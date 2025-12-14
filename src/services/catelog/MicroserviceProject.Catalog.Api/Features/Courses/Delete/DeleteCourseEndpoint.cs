@@ -31,7 +31,7 @@ namespace MicroserviceProject.Catalog.Api.Features.Courses.Delete
                 var result = await mediator.Send(new DeleteCourseCommand(id));
 
                 return result.ToGenericResult();
-            }).WithName("DeleteCourse");
+            }).MapToApiVersion(1, 0).WithName("DeleteCourse");
 
             return group;
         }
