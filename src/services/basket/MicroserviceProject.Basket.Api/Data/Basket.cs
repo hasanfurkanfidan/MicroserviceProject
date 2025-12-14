@@ -50,6 +50,11 @@ namespace MicroserviceProject.Basket.Api.Data
 
         public void ApplyAvailableDiscount()
         {
+            if (!IsApplyDiscount)
+            {
+                return;
+            }
+
             foreach (var item in Items)
             {
                 item.PriceByApplyDiscountRate = item.Price - (decimal)(1 - DiscountRate!);
