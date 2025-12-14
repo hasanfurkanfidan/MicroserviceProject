@@ -9,11 +9,11 @@ namespace MicroserviceProject.Basket.Api.Features.Baskets.ApplyDiscountCoupon
     {
         public static RouteGroupBuilder ApplyDiscountCouponGroupItemEndpoint(this RouteGroupBuilder group)
         {
-            group.MapPut("/apply-discount-rate", async (ApplyDiscountCouponCommand command, IMediator mediator) =>
+            group.MapPut("/apply-discount-coupon", async (ApplyDiscountCouponCommand command, IMediator mediator) =>
             {
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
-            }).WithName("ApplyDiscountRate").MapToApiVersion(1, 0).AddEndpointFilter<ValidationFilter<ApplyDiscountCouponCommand>>();
+            }).WithName("ApplyDiscountCoupon").MapToApiVersion(1, 0).AddEndpointFilter<ValidationFilter<ApplyDiscountCouponCommand>>();
 
             return group;
         }

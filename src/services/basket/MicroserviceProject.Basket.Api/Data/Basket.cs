@@ -1,4 +1,6 @@
-﻿namespace MicroserviceProject.Basket.Api.Data
+﻿using System.Text.Json.Serialization;
+
+namespace MicroserviceProject.Basket.Api.Data
 {
     public class Basket
     {
@@ -6,8 +8,12 @@
         public List<BasketItem> Items { get; set; } = new();
         public float? DiscountRate { get; set; }
         public string? Coupon { get; set; }
+        
+        [JsonIgnore]
 
         public decimal TotalPrice => Items.Sum(item => item.Price);
+
+        [JsonIgnore]
         public bool IsApplyDiscount => DiscountRate > 0 && !string.IsNullOrEmpty(Coupon);
 
         public Basket(Guid userId, List<BasketItem> items)
@@ -15,6 +21,8 @@
             UserId = userId;
             Items = items;
         }
+
+        [JsonIgnore]
         public decimal? TotalPriceWithAppliedDiscount
         {
             get

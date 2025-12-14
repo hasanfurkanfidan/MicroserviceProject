@@ -2,6 +2,7 @@
 using MicroserviceProject.Basket.Api.Features.Baskets.ApplyDiscountCoupon;
 using MicroserviceProject.Basket.Api.Features.Baskets.DeleteBasketItem;
 using MicroserviceProject.Basket.Api.Features.Baskets.GetBasket;
+using MicroserviceProject.Basket.Api.Features.Baskets.RemoveDiscountCoupon;
 
 namespace MicroserviceProject.Basket.Api.Features.Baskets
 {
@@ -15,7 +16,8 @@ namespace MicroserviceProject.Basket.Api.Features.Baskets
                 .AddBasketItemGroupItemEndpoint()
                 .DeleteBasketItemGroupItemEndpoint()
                 .GetBasketGroupItemEndpoint()
-                .ApplyDiscountCouponGroupItemEndpoint();
+                .ApplyDiscountCouponGroupItemEndpoint()
+                .RemoveDiscountCouponGroupItemEndpoint();
         }
     }
 }
