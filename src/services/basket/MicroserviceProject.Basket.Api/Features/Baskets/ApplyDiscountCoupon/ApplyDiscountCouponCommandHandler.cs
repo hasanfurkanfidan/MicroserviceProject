@@ -23,7 +23,13 @@ namespace MicroserviceProject.Basket.Api.Features.Baskets.ApplyDiscountCoupon
             }
 
             var basket = JsonSerializer.Deserialize<Data.Basket>(basketAsString);
-            
+
+            if (basket!.Items.Any())
+            {
+                return ServiceResult<BasketDto>.Error("Basket is empty, cannot apply discount", HttpStatusCode.NotFound);
+            }
+
+
             basket!.ApplyNewDiscount(request.Coupon, request.DiscountRate);
 
             await CreateCacheAsync(basket, cacheKey, cancellationToken);
