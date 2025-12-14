@@ -38,7 +38,9 @@ namespace MicroserviceProject.Basket.Api.Features.Baskets.AddBasketItem
                 currentBasket?.Items.Remove(existingBasketItem);
             }
 
-            currentBasket?.Items.Add(newBasketItem);
+            currentBasket!.Items.Add(newBasketItem);
+
+            currentBasket!.ApplyAvailableDiscount();
 
             await CreateCacheAsync(currentBasket!, cacheKey, cancellationToken);
 
