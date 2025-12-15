@@ -1,5 +1,5 @@
+using MicroserviceProject.Basket.Api;
 using MicroserviceProject.Basket.Api.Features.Baskets;
-using MicroserviceProject.Catalog.Api;
 using MicroserviceProject.Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);

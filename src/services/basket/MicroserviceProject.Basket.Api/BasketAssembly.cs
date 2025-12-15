@@ -1,4 +1,4 @@
-﻿namespace MicroserviceProject.Catalog.Api
+﻿namespace MicroserviceProject.Basket.Api
 {
     public struct BasketAssembly;
 }
