@@ -1,4 +1,5 @@
 using MicroserviceProject.Discount.Api;
+using MicroserviceProject.Discount.Api.Features.Discounts;
 using MicroserviceProject.Discount.Api.Options;
 using MicroserviceProject.Discount.Api.Repositories;
 using MicroserviceProject.Shared.Extensions;
@@ -14,6 +15,7 @@ builder.Services.AddDatabaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(DiscountAssembly));
 
 var app = builder.Build();
+app.AddDiscountGroupEndpointExt(app.AddVersionSetExt());
 
 if (app.Environment.IsDevelopment())
 {
