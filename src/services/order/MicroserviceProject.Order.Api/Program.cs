@@ -1,4 +1,6 @@
+using MicroserviceProject.Order.Application.Contracts.Repositories;
 using MicroserviceProject.Order.Persistence;
+using MicroserviceProject.Order.Persistence.Repositories;
 using MicroserviceProject.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //builder.Services.AddCommonServiceExt(typeof(OrderApplicationAssembly));
 builder.Services.AddDbContext<AppDbContext>(option => { option.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")); });
-
+builder.Services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
 builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
