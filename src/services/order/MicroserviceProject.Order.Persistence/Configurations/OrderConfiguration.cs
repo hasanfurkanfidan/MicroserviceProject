@@ -18,10 +18,10 @@ namespace MicroserviceProject.Order.Persistence.Configurations
             builder.Property(builder => builder.TotalPrice).IsRequired().HasColumnType("decimal(18,2)");
             builder.Property(builder => builder.DiscountRate).IsRequired(false);
 
-            builder.HasMany(builder => builder.OrderItems)
-                   .WithOne()
-                   .HasForeignKey(orderItem => orderItem.OrderId)
-                   .OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(o => o.OrderItems)
+            .WithOne(oi => oi.Order)
+            .HasForeignKey(oi => oi.OrderId)
+            .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(builder => builder.Address)
                    .WithMany()
