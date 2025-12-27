@@ -1,6 +1,9 @@
+using MicroserviceProject.Order.Api.Endpoints;
 using MicroserviceProject.Order.Application.Contracts.Repositories;
+using MicroserviceProject.Order.Application.Contracts.UnitOfWorks;
 using MicroserviceProject.Order.Persistence;
 using MicroserviceProject.Order.Persistence.Repositories;
+using MicroserviceProject.Order.Persistence.UnitOfWork;
 using MicroserviceProject.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,10 +14,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.AddCommonServiceExt(typeof(OrderApplicationAssembly));
+builder.Services.AddCommonServiceExt(typeof(OrderApplicationAssembly));
 builder.Services.AddDbContext<AppDbContext>(option => { option.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")); });
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
-builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment()) app.MapOpenApi();
@@ -26,5 +30,5 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.AddOrderGroupEndpointExt(app.AddVersionSetExt());
 app.Run();
