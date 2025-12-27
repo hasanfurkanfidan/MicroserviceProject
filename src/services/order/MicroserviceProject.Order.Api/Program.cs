@@ -19,6 +19,7 @@ builder.Services.AddDbContext<AppDbContext>(option => { option.UseSqlServer(buil
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
+builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining(typeof(OrderApiAssembly)));
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment()) app.MapOpenApi();
