@@ -4,9 +4,9 @@ namespace MicroserviceProject.Order.Persistence.UnitOfWork
 {
     public class UnitOfWork(AppDbContext context) : IUnitOfWork
     {
-        public Task BeginTransactionAsync(CancellationToken cancellationToken = default)
+        public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
         {
-            context.Database.BeginTransaction(cancellationToken);
+           await context.Database.BeginTransactionAsync(cancellationToken);
         }
 
         public Task CommitTransactionAsync(CancellationToken cancellationToken = default)
