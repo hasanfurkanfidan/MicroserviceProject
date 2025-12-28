@@ -24,6 +24,9 @@
   <Folder Name="/src/services/order/infrastructure/">
     <Project Path="src/services/order/MicroserviceProject.Order.Persistence/MicroserviceProject.Order.Persistence.csproj" Id="75eae1bf-f0c3-4af0-874a-dfbd4d50faed" />
   </Folder>
+  <Folder Name="/src/services/payment/">
+    <Project Path="src/services/payment/MicroserviceProject.Payment.Api/MicroserviceProject.Payment.Api.csproj" Id="a2c2566d-059d-43df-8244-52b2ee2b668c" />
+  </Folder>
   <Folder Name="/src/shared/">
     <Project Path="src/shared/MicroserviceProject.Shared/MicroserviceProject.Shared.csproj" />
   </Folder>
