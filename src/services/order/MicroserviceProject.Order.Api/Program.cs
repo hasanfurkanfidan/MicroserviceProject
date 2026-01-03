@@ -24,6 +24,7 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
 
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining(typeof(OrderApiAssembly)));
 
 // ---- API Versioning (CRITICAL: fixes IReportApiVersions error) ----
@@ -106,4 +107,6 @@ app.UseHttpsRedirection();
 // Artýk IReportApiVersions DI’da var, patlamaz.
 app.AddOrderGroupEndpointExt(app.AddVersionSetExt());
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.Run();

@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddVersionExt();
 builder.Services.AddScoped<BasketService>();
 builder.Services.AddCommonServiceExt(typeof(BasketAssembly));
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration.GetConnectionString("Redis");
@@ -26,4 +27,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.AddBasketGroupEndpointExt(app.AddVersionSetExt());
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.Run();

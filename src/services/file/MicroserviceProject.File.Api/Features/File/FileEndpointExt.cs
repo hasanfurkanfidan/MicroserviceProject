@@ -8,7 +8,7 @@ namespace MicroserviceProject.File.Api.Features.Discounts
     {
         public static void AddFileGroupEndpointExt(this WebApplication app, ApiVersionSet apiVersionSet)
         {
-            app.MapGroup("api/v:{version:apiversion}/files").WithTags("Files").WithApiVersionSet(apiVersionSet).UploadFileGroupItemEndpoint().DeleteFileGroupItemEndpoint();
+            app.MapGroup("api/v:{version:apiversion}/files").WithTags("Files").WithApiVersionSet(apiVersionSet).UploadFileGroupItemEndpoint().DeleteFileGroupItemEndpoint().RequireAuthorization();
         }
     }
 }

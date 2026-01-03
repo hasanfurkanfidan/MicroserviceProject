@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddVersionExt();
 builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
 builder.Services.AddCommonServiceExt(typeof(FileAssembly));
-
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 var app = builder.Build();
 app.UseStaticFiles();
 app.AddFileGroupEndpointExt(app.AddVersionSetExt());
@@ -22,4 +22,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.Run();
